@@ -1,7 +1,7 @@
 {
-  "name": "react-native-video-player",
-  "version": "0.10.1",
-  "description": "A video player for React Native with controls",
+  "name": "react-native-video-player-lite",
+  "version": "0.0.1",
+  "description": "A video player for React Native with controls and diff ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,15 +13,15 @@
     "ios",
     "android"
   ],
-  "author": "Corné Dorrestijn <contact@corne.info>",
+  "author": "Muhammad Iqbal <mqibal.dev@gmail.com>",
   "license": "ISC",
-  "repository": "cornedor/react-native-video-player",
+  "repository": "muhammad-iqbal/react-native-video-player",
   "peerDependencies": {
     "prop-types": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-vector-icons": ">= 2.1.0",
-    "react-native-video": "^2.0.0"
+    "react-native-video": "^5.1.0-alpha8",
+    "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {
     "eslint": "^3.4.0",

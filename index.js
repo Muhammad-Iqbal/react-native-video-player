@@ -39,24 +39,33 @@ const styles = StyleSheet.create({
   video: Platform.Version >= 24 ? {} : {
     backgroundColor: 'black',
   },
-  controls: {
+  seekControls: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    height: 48,
-    marginTop: -48,
+    height: 52,
+    marginTop: -52,
+    flexDirection: 'column',
+  },
+  controls: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   playControl: {
     color: 'white',
-    padding: 8,
+    paddingLeft:8,
+    paddingRight:8,
+    paddingBottom:8,
+    alignSelf: 'center'
   },
   extraControl: {
     color: 'white',
-    padding: 8,
+    paddingLeft:8,
+    paddingRight:8,
+    paddingBottom:8,
+    
   },
   seekBar: {
     alignItems: 'center',
-    height: 30,
+    height: 20,
     flexGrow: 1,
     flexDirection: 'row',
     paddingHorizontal: 10,
@@ -427,11 +436,17 @@ export default class VideoPlayer extends Component {
       </View>
     );
   }
+  
 
   renderControls() {
     const { customStyles } = this.props;
     return (
-      <View style={[styles.controls, customStyles.controls]}>
+      <View style={[styles.seekControls, customStyles.controls]}>
+        <View>
+        {this.renderSeekBar()}
+        </View>
+        <View style={[styles.controls, customStyles.controls]}>
+
         <TouchableOpacity
           onPress={this.onPlayPress}
           style={[customStyles.controlButton, customStyles.playControl]}
@@ -442,9 +457,8 @@ export default class VideoPlayer extends Component {
             size={32}
           />
         </TouchableOpacity>
-        {this.renderSeekBar()}
         {this.props.muted ? null : (
-          <TouchableOpacity onPress={this.onMutePress} style={customStyles.controlButton}>
+          <TouchableOpacity onPress={this.onMutePress} style={{justifyContent: 'center',alignItems: 'flex-end'}}>
             <Icon
               style={[styles.extraControl, customStyles.controlIcon]}
               name={this.state.isMuted ? 'volume-off' : 'volume-up'}
@@ -452,8 +466,9 @@ export default class VideoPlayer extends Component {
             />
           </TouchableOpacity>
         )}
+
         {(Platform.OS === 'android' || this.props.disableFullscreen) ? null : (
-          <TouchableOpacity onPress={this.onToggleFullScreen} style={customStyles.controlButton}>
+          <TouchableOpacity onPress={this.onToggleFullScreen} style={{flex:1,justifyContent: 'flex-end',flexDirection: 'row',alignItems: 'flex-end'}}>
             <Icon
               style={[styles.extraControl, customStyles.controlIcon]}
               name="fullscreen"
@@ -461,6 +476,8 @@ export default class VideoPlayer extends Component {
             />
           </TouchableOpacity>
         )}
+        </View>
+
       </View>
     );
   }
